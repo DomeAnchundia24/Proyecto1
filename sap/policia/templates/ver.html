@@ -29,15 +29,15 @@ Estado: {% if policia.activo %}
 </p>
 <p>
 <h3>Detalle del rango</h3>
-Cargo: Capitan {{policia.rango.cargo}}<br>
-Area: Oficina{{policia.rango.area}}<br>
-Tiempo: 5 años{{policia.rango.tiempo}}<br>
-Sector: sur {{policia.rango.sector}}</p><br>
+Cargo: {{policia.puesto.cargo}}<br>
+Area: {{policia.puesto.area}}<br>
+Tiempo: {{policia.puesto.tiempo}}<br>
+Sector: {{policia.puesto.sector}}</p><br>
 <p>
 <h3>Detalle del Especialidad</h3>
-Nombre: Medicina {{policia.especialidad.nombre}}<br>
-Descripcion: Area Medica{{policia.especialidad.descripcion}}<br>
-Nivel_Academico: 5 nivel {{policia.especialidad.nivel_academico}}<br>
+Nombre:  {{policia.especialista.nombre}}<br>
+Descripcion: {{policia.especialista.descripcion}}<br>
+Nivel_Academico: {{policia.especialista.nivel_academico}}<br>
 
 <a href="{%url 'inicio'%}" class="btn btn-info">Regresar <i class="fa-solid fa-arrow-left"></i></a>
 <a href="{%url 'inicio'%}" class="btn btn-info">Regresar
