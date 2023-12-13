@@ -29,6 +29,7 @@ Estado: {% if policia.activo %}
 </p>
 <p>
 <h3>Detalle del rango</h3>
+<<<<<<< HEAD
 Cargo: {{policia.puesto.cargo}}<br>
 Area: {{policia.puesto.area}}<br>
 Tiempo: {{policia.puesto.tiempo}}<br>
@@ -38,6 +39,17 @@ Sector: {{policia.puesto.sector}}</p><br>
 Nombre:  {{policia.especialista.nombre}}<br>
 Descripcion: {{policia.especialista.descripcion}}<br>
 Nivel_Academico: {{policia.especialista.nivel_academico}}<br>
+=======
+Cargo: {{policia.rango.cargo}}<br>
+Area: {{policia.rango.area}}<br>
+Tiempo: {{policia.rango.tiempo}}<br>
+Sector: {{policia.rango.sector}}</p><br>
+<p>
+<h3>Detalle del Especialidad</h3>
+Nombre: {{policia.especialidad.nombre}}<br>
+Descripcion: {{policia.especialidad.descripcion}}<br>
+Nivel_Academico: {{policia.especialidad.nivel_academico}}<br>
+>>>>>>> a97b6831ffec316326a789f82768fe0533885a20
 
 <a href="{%url 'inicio'%}" class="btn btn-info">Regresar <i class="fa-solid fa-arrow-left"></i></a>
 <a href="{%url 'inicio'%}" class="btn btn-info">Regresar
