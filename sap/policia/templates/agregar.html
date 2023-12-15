@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Agregar Persona</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
+    <!-- Otros enlaces o referencias necesarias -->
 </head>
 <body>
 
     <h1>Agregar Persona</h1>
 
-
-        <form method="POST">
-            <table>{{formulario}}</table>
-            <input type="submit" value="Grabar">
-            {% csrf_token %}
-        </form>
+    <form method="POST">
+        <table>{{formulario}}</table>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Grabar</button>
+        {% csrf_token %}
+    </form>
 
 </body>
 </html>

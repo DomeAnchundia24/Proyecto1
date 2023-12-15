@@ -3,14 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Modificar Policia</title>
+    <!-- Agregar la referencia a Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos adicionales para el botón Regresar */
+        .btn-regresar {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .btn-regresar:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h1>Modificar Policia</h1>
+    <h1>Modificar Policia</h1>
     <form method="POST">
         <table>{{formulario}}</table>
-        <input type="submit" value="Grabar">
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Grabar</button>
         {% csrf_token %}
     </form>
-<a href="{%url 'inicio'%}">Regresar</a>
+    <a href="{% url 'inicio' %}" class="btn-regresar"><i class="fas fa-arrow-left"></i> Regresar</a>
 </body>
 </html>
+

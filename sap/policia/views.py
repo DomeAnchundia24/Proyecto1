@@ -1,3 +1,6 @@
+import pandas as pd
+from bs4 import BeautifulSoup
+import requests
 from django.forms import modelform_factory
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404, render
@@ -47,3 +50,65 @@ def eliminar_policia(request, id):
     if policia_instance:  # Reemplaza "if policia:" por "if policia_instance:"
         policia_instance.delete()
         return redirect('inicio')
+
+'''
+def descargar_registro(request):
+    nombres = list()
+    apellidos = list()
+    especialidad = list()
+    rango = list()
+    url = 'http://127.0.0.1:8000/'
+    html_doc = requests.get(url)
+    print(html_doc)
+    soup = BeautifulSoup(html_doc.text, 'html.parser')
+    tabla = soup.find('table')
+    filas = tabla.find_all('tr')
+    for fila in filas:
+        celdas = fila.find_all('td')
+        print(celdas)
+        if len(celdas) > 0:
+            nombres.append(celdas[0].string)
+            apellidos.append(celdas[1].string)
+            especialidad.append(celdas[5].string)
+            rango.append(celdas[4].string)
+    df = pd.DataFrame({'Nombres': nombres, 'Apellidos': apellidos, 'Especialidad': especialidad, 'Rango': rango})
+    df.to_csv('policias.csv', index=False, encoding='utf-8')
+'''
+
+from django.http import HttpResponse
+from django.shortcuts import render
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+
+def descargar_registro(request):
+    nombres = []
+    apellidos = []
+    especialidad = []
+    rango = []
+    url = 'http://127.0.0.1:8000/'
+    html_doc = requests.get(url)
+    soup = BeautifulSoup(html_doc.text, 'html.parser')
+
+    tabla = soup.find('table')
+    filas = tabla.find_all('tr')
+
+    for fila in filas:
+        celdas = fila.find_all('td')
+        if len(celdas) > 0:
+            nombres.append(celdas[0].string)
+            apellidos.append(celdas[1].string)
+            especialidad.append(celdas[5].string)
+            rango.append(celdas[4].string)
+    df = pd.DataFrame({
+        'Nombres': nombres,
+        'Apellidos': apellidos,
+        'Especialidad': especialidad,
+        'Rango': rango
+    })
+    csv_data = df.to_csv(index=False, encoding='utf-8')
+    response = HttpResponse(csv_data, content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="policias.csv"'
+
+    return response

@@ -11,23 +11,6 @@ url = 'http://127.0.0.1:8000/'
 html_doc = requests.get(url)
 print(html_doc)
 soup = BeautifulSoup(html_doc.text, 'html.parser')
-# data = soup.find_all('td',attrs={"class": "table-primary"})
-# i=0
-# # print(data)
-#
-# while(i+2<len(data)):
-#     nombres.append(data[i].text)
-#     apellidos.append(data[i+1].text)
-#     especialidad.append(data[i+2].text)
-#     rango.append(data[i+2].text)
-#     i+=3
-
-# for d in data:
-#     nombres.append(data[i])
-#     apellidos.append(data[i])
-#     especialidad.append(data[i])
-#     rango.append(data[i])
-#     i+=1
 
 tabla = soup.find('table')
 # print(tabla)

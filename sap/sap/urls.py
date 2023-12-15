@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from policia.views import agregar_policia, ver_policia, eliminar_policia, modificar_policia
+from policia.views import agregar_policia, ver_policia, eliminar_policia, modificar_policia, descargar_registro
 from webapp.views import bienvenida2, bienvenida
 
 urlpatterns = [
@@ -29,4 +29,5 @@ urlpatterns = [
     path('ver_policia/<int:id>', ver_policia),
     path('eliminar_policia/<int:id>',eliminar_policia),
     path('modificar_policia/<int:id>',modificar_policia),
+    path('descargar_registro/', descargar_registro),
 ]
