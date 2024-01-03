@@ -5,8 +5,11 @@ from django.forms import modelform_factory
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404, render
 from django.template import loader
-from policia.models import policia
+from rest_framework import viewsets, permissions
+
+from policia.models import policia, rango, especialidad
 from policia.forms import PoliciaFormulario
+from policia.serializers import PoliciaSerializer, RangoSerializer, EspecialidadSerializer
 
 PoliciaFormulario = modelform_factory(policia, exclude=['activo', ])
 
@@ -112,3 +115,15 @@ def descargar_registro(request):
     response['Content-Disposition'] = 'attachment; filename="policias.csv"'
 
     return response
+class PoliciaViewSet(viewsets.ModelViewSet):
+    queryset = policia.objects.all().order_by('-apellidos')
+    serializer_class = PoliciaSerializer
+    permission_classes = [permissions.IsAuthenticated]
+class RangoViewSet(viewsets.ModelViewSet):
+    queryset = rango.objects.all()
+    serializer_class = RangoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+class EspecialidadViewSet(viewsets.ModelViewSet):
+    queryset = especialidad.objects.all()
+    serializer_class = EspecialidadSerializer
+    permission_classes = [permissions.IsAuthenticated]

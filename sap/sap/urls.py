@@ -15,15 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
-from policia.views import agregar_policia, ver_policia, eliminar_policia, modificar_policia, descargar_registro
+
+from policia.views import agregar_policia, ver_policia, eliminar_policia, modificar_policia, descargar_registro, \
+    PoliciaViewSet, RangoViewSet, EspecialidadViewSet
 from webapp.views import bienvenida2, bienvenida
 
+router = routers.DefaultRouter()
+router.register(r'api_policia', PoliciaViewSet)
+router.register(r'api_rango', RangoViewSet)
+router.register(r'api_especialidad', EspecialidadViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('bienvenido/',bienvenida),
-    # path('despedida/',despedida),
+    path('api',include(router.urls)),
+    path('api-auth/',include('rest_framework.urls', namespace='rest_framework')),
     path('',bienvenida2, name='inicio'),
     path('agregar_policia/', agregar_policia),
     path('ver_policia/<int:id>', ver_policia),
@@ -31,3 +38,4 @@ urlpatterns = [
     path('modificar_policia/<int:id>',modificar_policia),
     path('descargar_registro/', descargar_registro),
 ]
+urlpatterns += router.urls
